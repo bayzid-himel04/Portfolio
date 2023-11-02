@@ -3,16 +3,16 @@ import "./app.scss";
 
 const App = () => {
   return <div>
-    <section>
+    <section id="Homepage">
       <NavBar/>
       </section>
-    <section>Parallax</section>
+    <section id="Services">Parallax</section>
     <section>Services</section>
-    <section>Parallax</section>
+    <section id="Portfolio">Parallax</section>
     <section>Protfolio1</section>
     <section>Protfolio2</section>
     <section>Protfolio3</section>
-    <section>Contact</section>
+    <section id="contact">Contact</section>
   </div>;
 };
 
