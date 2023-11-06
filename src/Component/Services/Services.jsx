@@ -1,5 +1,5 @@
 import './Services.scss';
-import {animate, motion} from 'framer-motion';
+import { motion, useInView} from 'framer-motion';
 
 
 const variants={
@@ -19,6 +19,7 @@ const variants={
   },
 };
 
+
 const Services = () => {
   return (
     <motion.div 
@@ -34,10 +35,10 @@ const Services = () => {
         <motion.div className="titleContainer"  variants={variants}>
             <div className="title">
                 <img src="/people.webp" alt="" />
-                <h1><b>Unique</b> Ideas</h1>
+                <h1><motion.b whileHover={{color:"orange"}}>Unique</motion.b> Ideas</h1>
             </div>
             <div className="title">
-                <h1><b>For Your</b> Business.</h1>
+                <h1><motion.b whileHover={{color:"orange"}}>For Your</motion.b> Business.</h1>
                 <button>What We Do?</button>
             </div>
         </motion.div>
