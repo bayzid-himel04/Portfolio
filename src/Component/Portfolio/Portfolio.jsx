@@ -7,25 +7,25 @@ const items=[
   {
     id:1,
     title:"React Commerce",
-    img:"https://images.pexels.com/photos/16776919/pexels-photo-16776919/free-photo-of-blue-motor-scooter-standing-outside-a-beauty-center.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+    img:"https://instamobile.io/wp-content/uploads/2018/10/shopertino-cover-800x600.png",
     desc:" Lorem ipsum dolor sit amet consectetur adipisicing elit. Et recusandae eaque veritatis in architecto ut tenetur expedita rerum assumenda ipsum.",
   },
   {
     id:2,
     title:"Next.js Blog",
-    img:"https://images.pexels.com/photos/15524939/pexels-photo-15524939/free-photo-of-rock-formation-in-sea.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+    img:"https://i.ytimg.com/vi/1T3GF6endl8/maxresdefault.jpg",
     desc:" Lorem ipsum dolor sit amet consectetur adipisicing elit. Et recusandae eaque veritatis in architecto ut tenetur expedita rerum assumenda ipsum.",
   },
   {
     id:3,
     title:"Vanilla Js App",
-    img:"https://images.pexels.com/photos/18888635/pexels-photo-18888635/free-photo-of-honda-motorcycle-on-roadside-in-woods.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+    img:"https://vanillajs-only.netlify.app/00-assets/images/projects/markdown/08-minimal-banking-app.jpg",
     desc:" Lorem ipsum dolor sit amet consectetur adipisicing elit. Et recusandae eaque veritatis in architecto ut tenetur expedita rerum assumenda ipsum.",
   },
   {
     id:4,
     title:"Music App",
-    img:"https://images.pexels.com/photos/1762578/pexels-photo-1762578.jpeg?auto=compress&cs=tinysrgb&w=300",
+    img:"https://freefrontend.com/assets/img/react-music-players/thumb.png",
     desc:" Lorem ipsum dolor sit amet consectetur adipisicing elit. Et recusandae eaque veritatis in architecto ut tenetur expedita rerum assumenda ipsum.",
   },
 ];
