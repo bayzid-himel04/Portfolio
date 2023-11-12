@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import './Services.scss';
 import { motion, useInView} from 'framer-motion';
 
@@ -21,12 +22,17 @@ const variants={
 
 
 const Services = () => {
+  const ref = useRef();
+  const isInView = useInView(ref,{margin:"-100px"})
   return (
     <motion.div 
     className='services' 
     variants={variants}
     initial="initial"
-    whileInView="animate">
+    //whileInView="animate"
+    ref ={ref}
+    animate={ "animate"}
+    >
       
         <motion.div className="textContainer"  variants={variants}>
           <p>I focus on helping your brand grow

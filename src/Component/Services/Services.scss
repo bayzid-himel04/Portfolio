@@ -30,6 +30,10 @@
             width:500px;
             border: none;
             border-top: 0.5px solid gray;
+
+            @include mobile{
+              width: 300px;
+              }
         }
 
     }
@@ -40,21 +44,39 @@
         flex-direction: column;
         align-items: center;
 
+        @include mobile{
+            width: 100%;
+          }
+
         .title{
             display: flex;
             align-items: center;
             gap: 50px;
+
+            @include mobile{
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+              }
 
             img{
                 width: 300px;
                 height: 100px;
                 border-radius: 50px;
                 object-fit: cover;
+
+                @include mobile{
+                   width: 200px;
+                   height: 50px;
+                  }
             }
             
             h1{
                 font-size: 100px;
                 font-weight: 100;
+                @include mobile{
+                  font-size: 36px;
+                  }
             }
 
             button{
@@ -65,6 +87,12 @@
                 border: none;
                 font-size: 24px;
                 cursor: pointer;
+
+                @include mobile{
+                    font-size: 15px;
+                    width: 150px;
+                    height: 50px;
+                  }
             }
         }
 
@@ -76,6 +104,11 @@
         max-width: 1366px;
         margin: auto;
 
+        @include mobile{
+            width: 100%;
+            flex-direction: column;
+          }
+
 
         .box{
             padding: 50px;
@@ -84,6 +117,19 @@
             flex-direction: column;
             justify-content: space-between;
 
+            @include mobile{
+               border: none;
+               align-items: center;
+               gap: 10px;
+               padding: 10px;
+              }
+
+            p{
+                @include mobile{
+                   display: none;
+                  }
+            }
+
             button{
                 padding: 10px;
                 border: none;
@@ -91,6 +137,15 @@
                 background-color: orange;
                 border-radius: 10px;
                 margin-top: 5px;
+
+                @include mobile{
+                    background-color: transparent;
+                    border: 1px solid orange;
+                    border-radius: 5px;
+                    color: orange;
+                    width: 50%;
+                    padding: 5px;
+                  }
             }
         }
 
