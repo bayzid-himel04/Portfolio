@@ -3,6 +3,8 @@
 .portfolio{
    position: relative;
 
+   
+
     .progress{
       position: sticky;
       top: 0;
@@ -11,15 +13,19 @@
       text-align: center;
       color: orange;
       font-size: 36px;
-      h1 {
-        position: sticky; // Add this line
-        top: 0; // Add this line
-        z-index: 2; // Add this line
-  
-        @include mobile {
-          position: sticky;
+      @include mobile{
+        margin-top: 200px;
+      
+      }
+
+      h1{
+        @include mobile{
+      
+        display: none;
+          
         }
       }
+    
   
       @include mobile{
         padding-top: calc(100vh - 100px);
@@ -28,6 +34,11 @@
         .progressBar{
           height: 10px;
           background-color: white;
+          @include mobile{
+      
+            display: none;
+              
+            }
 
         }
     }
