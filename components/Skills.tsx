@@ -9,15 +9,15 @@ const colorMap = {
 };
 
 const headerColor = {
-  cyan: "text-[#00d9ff]",
-  green: "text-[#00ff87]",
-  magenta: "text-[#ff0080]",
+  cyan: "text-neoncyan",
+  green: "text-neongreen",
+  magenta: "text-neonmagenta",
 };
 
 const borderColor = {
-  cyan: "border-[#00d9ff]/20",
-  green: "border-[#00ff87]/20",
-  magenta: "border-[#ff0080]/20",
+  cyan: "border-neoncyan/20",
+  green: "border-neongreen/20",
+  magenta: "border-neonmagenta/20",
 };
 
 export default function Skills() {
@@ -31,8 +31,8 @@ export default function Skills() {
         transition={{ duration: 0.6 }}
         className="flex items-center gap-4 mb-16"
       >
-        <span className="font-mono text-[#00d9ff] text-sm tracking-widest">03.</span>
-        <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-white">Technical Skills</h2>
+        <span className="font-mono text-neoncyan text-sm tracking-widest">04.</span>
+        <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-ink">Technical Skills</h2>
         <div className="flex-1 cyber-divider" />
       </motion.div>
 
@@ -52,10 +52,10 @@ export default function Skills() {
               <div
                 className={`w-1 h-5 rounded-full ${
                   group.color === "cyan"
-                    ? "bg-[#00d9ff] shadow-[0_0_8px_rgba(0,217,255,0.8)]"
+                    ? "bg-neoncyan shadow-[0_0_8px_rgba(0,217,255,0.8)]"
                     : group.color === "green"
-                    ? "bg-[#00ff87] shadow-[0_0_8px_rgba(0,255,135,0.8)]"
-                    : "bg-[#ff0080] shadow-[0_0_8px_rgba(255,0,128,0.8)]"
+                    ? "bg-neongreen shadow-[0_0_8px_rgba(0,255,135,0.8)]"
+                    : "bg-neonmagenta shadow-[0_0_8px_rgba(255,0,128,0.8)]"
                 }`}
               />
               <h3 className={`font-orbitron text-xs font-bold tracking-wider uppercase ${headerColor[group.color]}`}>

@@ -10,6 +10,9 @@ interface Particle {
   opacity: number;
 }
 
+const DARK_RGB = "0, 217, 255";
+const LIGHT_RGB = "14, 116, 144";
+
 export default function ParticleCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -55,6 +58,8 @@ export default function ParticleCanvas() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      const rgb = document.documentElement.classList.contains("light") ? LIGHT_RGB : DARK_RGB;
+
       particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
@@ -73,7 +78,7 @@ export default function ParticleCanvas() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 217, 255, ${p.opacity})`;
+        ctx.fillStyle = `rgba(${rgb}, ${p.opacity})`;
         ctx.fill();
       });
 
@@ -88,7 +93,7 @@ export default function ParticleCanvas() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0, 217, 255, ${alpha})`;
+            ctx.strokeStyle = `rgba(${rgb}, ${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
@@ -110,8 +115,7 @@ export default function ParticleCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ opacity: 0.65 }}
+      className="hero-particles absolute inset-0 w-full h-full"
       aria-hidden="true"
     />
   );

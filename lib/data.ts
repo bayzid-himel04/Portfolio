@@ -1,15 +1,15 @@
 export const personalInfo = {
   name: "Bayzid Himel",
-  title: "Co-Founder & SecDev Lead — Penough",
+  title: "SecDev Lead | Security Software Engineer",
   location: "Dhaka, Bangladesh",
   email: "bayzidhimel04@gmail.com",
   phone: "+88 01622821469",
   linkedin: "https://www.linkedin.com/in/bayzidhimel/",
   github: "https://github.com/bayzid-himel04",
   objective:
-    "Security Software Engineer with experience in secure web application development, defensive security, and cybersecurity automation. Passionate about building security-focused platforms that improve vulnerability management, security monitoring, and threat detection.",
+    "Cybersecurity product engineer and SecDev Lead with experience in security software development, application security, defensive security, and cybersecurity automation. Co-developing security platforms spanning phishing simulation, continuous penetration testing, vulnerability lifecycle management, and security-focused internet asset discovery.",
   objectivePart2:
-    "Experienced in integrating security throughout the Secure Software Development Life Cycle (SSDLC) by implementing secure coding practices, application security testing, and automation. Seeking opportunities to design innovative security products that strengthen organizational cyber resilience while continuously advancing expertise in Application Security, DevSecOps, and Defensive Security.",
+    "Experienced in building web applications, REST APIs, authentication systems, and security workflows using modern JavaScript and Python technologies. Interested in Application Security, DevSecOps, Security Engineering, and cybersecurity research, with a focus on building practical security products that improve organizational cyber resilience.",
 };
 
 export const workExperience = [
@@ -20,13 +20,13 @@ export const workExperience = [
     period: "November 2023 – Present",
     current: true,
     responsibilities: [
-      "Designing and developing security-focused web applications and cybersecurity platforms using modern web technologies.",
-      "Building defensive security solutions for vulnerability management, security monitoring, and incident response workflows.",
-      "Developing secure REST APIs and implementing authentication, authorization, and secure coding practices following OWASP standards.",
-      "Integrating security throughout the Secure Software Development Life Cycle (SSDLC), including secure code reviews, application security testing, and automated validation.",
-      "Developing automation workflows for vulnerability assessment, reporting, and remediation.",
-      "Collaborating with software engineers and security researchers to build scalable cybersecurity products.",
-      "Performing application security assessments, vulnerability validation, and remediation of identified security issues.",
+      "Lead the development of cybersecurity products, translating security requirements into practical software features and workflows.",
+      "Design and develop security-focused web applications, backend services, REST APIs, authentication mechanisms, and vulnerability management workflows.",
+      "Drive development across three cybersecurity products: PhishTop, BugValluk, and Surveiller.io.",
+      "Apply secure software development practices, including authentication and authorization controls, API security, vulnerability validation, and secure coding principles.",
+      "Develop automation for security assessment, vulnerability tracking, remediation workflows, and security reporting.",
+      "Collaborate with security researchers and software engineers to improve product functionality, security, and maintainability.",
+      "Contribute to application security testing, security issue remediation, and the integration of security practices throughout the software development lifecycle.",
     ],
   },
   {
@@ -36,11 +36,71 @@ export const workExperience = [
     period: "March 2023 – October 2023",
     current: false,
     responsibilities: [
-      "Monitored SIEM alerts and investigated security incidents.",
-      "Performed threat analysis, incident response, and log analysis to detect malicious activities.",
-      "Conducted vulnerability assessments and generated security reports.",
-      "Managed security monitoring tools and supported compliance initiatives.",
-      "Assisted in digital forensic investigations and malware analysis.",
+      "Monitored SIEM alerts and investigated potential security incidents.",
+      "Performed log analysis, threat investigation, and incident response activities to identify suspicious behavior.",
+      "Conducted vulnerability assessments and prepared security assessment reports.",
+      "Supported security monitoring operations, security tool management, and compliance-related activities.",
+      "Assisted with digital forensic investigations and malware analysis.",
+    ],
+  },
+];
+
+export const products = [
+  {
+    name: "PhishTop",
+    tagline: "Security Awareness & Phishing Simulation Platform",
+    website: "https://phishtop.com",
+    domain: "phishtop.com",
+    color: "cyan" as const,
+    description:
+      "A security awareness and phishing simulation platform designed to help organizations assess user awareness and strengthen their human security defenses.",
+    points: [
+      "Simulation workflows for email, QR codes, calendar invitations, and public-event-themed scenarios.",
+      "Campaign management and simulation workflows.",
+      "Security awareness assessment and reporting.",
+    ],
+  },
+  {
+    name: "BugValluk",
+    tagline: "Continuous Penetration Testing & PenOps Platform",
+    website: "https://bugvalluk.com",
+    domain: "bugvalluk.com",
+    color: "green" as const,
+    description:
+      "A continuous penetration testing platform designed to streamline security assessments and vulnerability lifecycle management.",
+    points: [
+      "Real-time vulnerability reporting, evidence management, and risk prioritization.",
+      "Remediation tracking, verification, and retesting workflows.",
+      "Centralized dashboards supporting collaboration between security researchers and engineering teams.",
+      "End-to-end PenOps: scoping, discovery, remediation, verification, and security reporting.",
+    ],
+  },
+  {
+    name: "Surveiller.io",
+    tagline: "Security Search & Internet Asset Discovery",
+    website: "https://surveiller.io",
+    domain: "surveiller.io",
+    color: "magenta" as const,
+    description:
+      "A security-focused search platform that helps users explore internet-facing services and discover security-relevant information about exposed assets.",
+    points: [
+      "React-based frontend with a Node.js/Express backend and API-driven search.",
+      "Authentication workflows, search interface development, and backend integration.",
+      "Data presentation for security-focused discovery and research.",
+    ],
+  },
+  {
+    name: "WaapiMotion",
+    tagline: "WhatsApp Automation & Messaging Platform",
+    website: "https://www.waapimotion.com",
+    domain: "waapimotion.com",
+    color: "green" as const,
+    description:
+      "A WhatsApp automation and marketing platform for high-volume conversational messaging, built on the official Meta WhatsApp Cloud API.",
+    points: [
+      "Automated broadcast campaigns, template management, and interactive WhatsApp Flows.",
+      "Multi-agent shared inbox with real-time two-way chat and agent assignment.",
+      "1-click Meta Embedded Signup, webhook sync, and delivery health monitoring.",
     ],
   },
 ];
@@ -50,7 +110,7 @@ export const education = {
   degree: "Bachelor of Science in Computer Science & Engineering",
   period: "2018 – 2024",
   location: "Dhaka, Bangladesh",
-  cgpa: "3.22",
+  cgpa: "3.03",
 };
 
 export const certifications = [
@@ -64,35 +124,35 @@ export const certifications = [
   {
     name: "CASA – Certified API Security Analyst",
     issuer: "APISEC University",
-    date: "Apr 2025",
+    date: "April 2025",
     badge: "CASA",
     color: "green",
   },
   {
     name: "ACP – APISEC Certified Practitioner",
     issuer: "APISEC University",
-    date: "Apr 2025",
+    date: "April 2025",
     badge: "ACP",
     color: "green",
   },
   {
     name: "CAP – Certified AppSec Practitioner",
     issuer: "The SecOps Group",
-    date: "Sep 2024",
+    date: "September 2024",
     badge: "CAP",
     color: "magenta",
   },
   {
     name: "C3SA – Certified Cyber Security Analyst",
     issuer: "CyberWarFare Labs",
-    date: "Jul 2024",
+    date: "July 2024",
     badge: "C3SA",
     color: "cyan",
   },
   {
     name: "CNSP – Certified Network Security Practitioner",
     issuer: "The SecOps Group",
-    date: "Jun 2024",
+    date: "June 2024",
     badge: "CNSP",
     color: "magenta",
   },
@@ -102,27 +162,27 @@ export const skills = [
   {
     category: "Application Security",
     color: "cyan" as const,
-    items: ["OWASP Top 10", "Secure Coding", "Secure Code Review", "Threat Modeling", "Authentication & Authorization", "API Security"],
+    items: ["Secure Coding", "Secure Code Review", "Threat Modeling", "Authentication & Authorization", "API Security", "Vulnerability Assessment"],
   },
   {
     category: "Defensive Security",
     color: "green" as const,
-    items: ["SIEM", "Security Monitoring", "Threat Detection", "Incident Response", "Log Analysis", "Vulnerability Management"],
+    items: ["SIEM", "Security Monitoring", "Threat Detection", "Incident Response", "Log Analysis", "Vulnerability Management", "Digital Forensics"],
   },
   {
     category: "Security Platforms",
     color: "magenta" as const,
-    items: ["Wazuh", "Elastic Stack", "TheHive", "Cortex", "Shuffle", "OpenCTI"],
+    items: ["Wazuh", "TheHive", "Cortex", "Shuffle", "OpenCTI"],
   },
   {
     category: "Threat Intelligence",
     color: "cyan" as const,
-    items: ["MITRE ATT&CK Framework", "Sigma Rules", "YARA Rules", "IOC Analysis"],
+    items: ["MITRE ATT&CK", "YARA Rules", "IOC Analysis"],
   },
   {
     category: "Programming Languages",
     color: "green" as const,
-    items: ["JavaScript", "TypeScript", "Python", "Bash"],
+    items: ["JavaScript", "TypeScript"],
   },
   {
     category: "Frontend Development",
@@ -135,42 +195,30 @@ export const skills = [
     items: ["Node.js", "Express.js", "REST APIs", "JWT", "OAuth2"],
   },
   {
-    category: "Databases",
+    category: "Databases & Search",
     color: "green" as const,
-    items: ["MongoDB", "PostgreSQL"],
+    items: ["PostgreSQL", "MongoDB", "Elasticsearch"],
   },
   {
-    category: "DevSecOps",
+    category: "DevSecOps & Infrastructure",
     color: "magenta" as const,
     items: ["Git", "GitHub", "Docker", "Linux", "Secure SDLC", "CI/CD Fundamentals"],
   },
   {
-    category: "Testing & Performance",
+    category: "Testing & API Tools",
     color: "cyan" as const,
-    items: ["Apache JMeter", "Postman"],
-  },
-];
-
-export const achievements = [
-  {
-    title: "Cybersecurity Platforms",
-    desc: "Developing cybersecurity platforms focused on defensive security and vulnerability management.",
-  },
-  {
-    title: "Secure Authentication Systems",
-    desc: "Built secure authentication and authorization systems following OWASP Application Security best practices.",
-  },
-  {
-    title: "Automation Workflows",
-    desc: "Developed automation workflows for security monitoring, vulnerability validation, and reporting.",
-  },
-  {
-    title: "Vulnerability Remediation",
-    desc: "Contributed to secure software development by identifying and remediating application security vulnerabilities.",
+    items: ["Postman", "Apache JMeter"],
   },
 ];
 
 export const personal = {
   languages: ["Bangla (Native)", "English (Professional Working Proficiency)"],
-  interests: ["Application Security", "Defensive Security", "DevSecOps", "Cloud Security", "Cybersecurity Research"],
+  interests: [
+    "Cybersecurity Product Engineering",
+    "Security Research",
+    "Application Security",
+    "DevSecOps",
+    "Secure Software Design",
+    "Digital Forensics",
+  ],
 };

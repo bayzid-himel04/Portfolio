@@ -4,15 +4,27 @@ import { Award, Calendar } from "lucide-react";
 import { certifications } from "@/lib/data";
 
 const glowMap: Record<string, string> = {
-  cyan: "hover:shadow-neon-cyan hover:border-[#00d9ff]/40",
-  green: "hover:shadow-neon-green hover:border-[#00ff87]/40",
-  magenta: "hover:shadow-neon-magenta hover:border-[#ff0080]/40",
+  cyan: "hover:shadow-neon-cyan hover:border-neoncyan/40",
+  green: "hover:shadow-neon-green hover:border-neongreen/40",
+  magenta: "hover:shadow-neon-magenta hover:border-neonmagenta/40",
 };
 
 const badgeBg: Record<string, string> = {
-  cyan: "bg-[#00d9ff]/10 text-[#00d9ff] border border-[#00d9ff]/20",
-  green: "bg-[#00ff87]/10 text-[#00ff87] border border-[#00ff87]/20",
-  magenta: "bg-[#ff0080]/10 text-[#ff0080] border border-[#ff0080]/20",
+  cyan: "bg-neoncyan/10 text-neoncyan border border-neoncyan/20",
+  green: "bg-neongreen/10 text-neongreen border border-neongreen/20",
+  magenta: "bg-neonmagenta/10 text-neonmagenta border border-neonmagenta/20",
+};
+
+const accentText: Record<string, string> = {
+  cyan: "text-neoncyan",
+  green: "text-neongreen",
+  magenta: "text-neonmagenta",
+};
+
+const accentLine: Record<string, string> = {
+  cyan: "bg-gradient-to-r from-transparent via-neoncyan to-transparent",
+  green: "bg-gradient-to-r from-transparent via-neongreen to-transparent",
+  magenta: "bg-gradient-to-r from-transparent via-neonmagenta to-transparent",
 };
 
 export default function Certifications() {
@@ -26,8 +38,8 @@ export default function Certifications() {
         transition={{ duration: 0.6 }}
         className="flex items-center gap-4 mb-16"
       >
-        <span className="font-mono text-[#00d9ff] text-sm tracking-widest">04.</span>
-        <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-white">Certifications</h2>
+        <span className="font-mono text-neoncyan text-sm tracking-widest">05.</span>
+        <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-ink">Certifications</h2>
         <div className="flex-1 cyber-divider" />
       </motion.div>
 
@@ -44,9 +56,7 @@ export default function Certifications() {
           >
             {/* Background badge watermark */}
             <div
-              className={`absolute -top-4 -right-3 font-orbitron text-6xl font-black opacity-[0.04] select-none ${
-                cert.color === "cyan" ? "text-[#00d9ff]" : cert.color === "green" ? "text-[#00ff87]" : "text-[#ff0080]"
-              }`}
+              className={`absolute -top-4 -right-3 font-orbitron text-6xl font-black opacity-[0.04] select-none ${accentText[cert.color]}`}
             >
               {cert.badge}
             </div>
@@ -58,19 +68,17 @@ export default function Certifications() {
               </div>
               <Award
                 size={18}
-                className={`opacity-40 group-hover:opacity-100 transition-opacity duration-300 ${
-                  cert.color === "cyan" ? "text-[#00d9ff]" : cert.color === "green" ? "text-[#00ff87]" : "text-[#ff0080]"
-                }`}
+                className={`opacity-40 group-hover:opacity-100 transition-opacity duration-300 ${accentText[cert.color]}`}
               />
             </div>
 
             {/* Cert name */}
-            <h3 className="font-semibold text-[#e2e8f0] text-sm leading-snug mb-3 pr-4">{cert.name}</h3>
+            <h3 className="font-semibold text-ink text-sm leading-snug mb-3 pr-4">{cert.name}</h3>
 
             {/* Issuer + date */}
             <div className="space-y-1">
-              <p className="font-mono text-xs text-[#64748b]">{cert.issuer}</p>
-              <div className="flex items-center gap-1.5 font-mono text-xs text-[#475569]">
+              <p className="font-mono text-xs text-muted">{cert.issuer}</p>
+              <div className="flex items-center gap-1.5 font-mono text-xs text-faint">
                 <Calendar size={11} />
                 {cert.date}
               </div>
@@ -78,13 +86,7 @@ export default function Certifications() {
 
             {/* Bottom accent line */}
             <div
-              className={`absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                cert.color === "cyan"
-                  ? "bg-gradient-to-r from-transparent via-[#00d9ff] to-transparent"
-                  : cert.color === "green"
-                  ? "bg-gradient-to-r from-transparent via-[#00ff87] to-transparent"
-                  : "bg-gradient-to-r from-transparent via-[#ff0080] to-transparent"
-              }`}
+              className={`absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${accentLine[cert.color]}`}
             />
           </motion.div>
         ))}

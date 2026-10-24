@@ -2,10 +2,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shield, Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
+  { label: "Products", href: "#products" },
   { label: "Skills", href: "#skills" },
   { label: "Certifications", href: "#certifications" },
   { label: "Education", href: "#education" },
@@ -47,7 +49,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#030712]/90 backdrop-blur-xl border-b border-[#00d9ff]/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+          ? "bg-base/90 backdrop-blur-xl border-b border-neoncyan/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
           : "bg-transparent"
       }`}
     >
@@ -60,12 +62,12 @@ export default function Navbar() {
           <div className="relative">
             <Shield
               size={22}
-              className="text-[#00d9ff] group-hover:drop-shadow-[0_0_8px_rgba(0,217,255,0.8)] transition-all duration-300"
+              className="text-neoncyan group-hover:drop-shadow-[0_0_8px_rgba(0,217,255,0.8)] transition-all duration-300"
             />
-            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#00ff87] pulse-dot" />
+            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-neongreen pulse-dot" />
           </div>
-          <span className="font-orbitron text-sm font-bold tracking-widest text-white">
-            BH<span className="text-[#00d9ff]">.</span>
+          <span className="font-orbitron text-sm font-bold tracking-widest text-ink">
+            BH<span className="text-neoncyan">.</span>
           </span>
         </motion.a>
 
@@ -78,13 +80,13 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`relative px-3 py-2 text-xs font-mono tracking-wider uppercase transition-colors duration-200 ${
-                  isActive ? "text-[#00d9ff]" : "text-[#94a3b8] hover:text-[#e2e8f0]"
+                  isActive ? "text-neoncyan" : "text-muted hover:text-ink"
                 }`}
               >
                 {isActive && (
                   <motion.span
                     layoutId="nav-indicator"
-                    className="absolute inset-0 rounded bg-[#00d9ff]/8 border border-[#00d9ff]/20"
+                    className="absolute inset-0 rounded bg-neoncyan/8 border border-neoncyan/20"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
                   />
                 )}
@@ -92,24 +94,28 @@ export default function Navbar() {
               </a>
             );
           })}
+          <ThemeToggle className="ml-3" />
           <a
-            href="/Bayzid-CV.pdf"
+            href="/Bayzid_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-3 px-4 py-2 text-xs font-mono tracking-wider uppercase text-[#030712] bg-[#00d9ff] rounded hover:bg-[#00ff87] hover:shadow-neon-green transition-all duration-300 font-semibold"
+            className="ml-2 px-4 py-2 text-xs font-mono tracking-wider uppercase text-onaccent bg-neoncyan rounded hover:bg-neongreen hover:shadow-neon-green transition-all duration-300 font-semibold"
           >
             Resume
           </a>
         </nav>
 
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden p-2 text-[#94a3b8] hover:text-[#00d9ff] transition-colors absolute right-4"
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile controls */}
+        <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
+          <button
+            className="p-2 text-muted hover:text-neoncyan transition-colors"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -120,7 +126,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#030712]/95 backdrop-blur-xl border-t border-[#00d9ff]/10 overflow-hidden"
+            className="md:hidden bg-base/95 backdrop-blur-xl border-t border-neoncyan/10 overflow-hidden"
           >
             <div className="px-4 py-4 flex flex-col gap-2">
               {navLinks.map((link, i) => (
@@ -131,17 +137,17 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
                   onClick={() => setMenuOpen(false)}
-                  className="py-3 px-4 font-mono text-sm tracking-wider uppercase text-[#94a3b8] hover:text-[#00d9ff] hover:bg-[#00d9ff]/5 rounded transition-all duration-200"
+                  className="py-3 px-4 font-mono text-sm tracking-wider uppercase text-muted hover:text-neoncyan hover:bg-neoncyan/5 rounded transition-all duration-200"
                 >
                   {link.label}
                 </motion.a>
               ))}
               <a
-                href="/Bayzid-CV.pdf"
+                href="/Bayzid_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 py-3 px-4 text-center font-mono text-sm tracking-wider uppercase text-[#030712] bg-[#00d9ff] rounded font-semibold"
+                className="mt-2 py-3 px-4 text-center font-mono text-sm tracking-wider uppercase text-onaccent bg-neoncyan rounded font-semibold"
               >
                 Download Resume
               </a>

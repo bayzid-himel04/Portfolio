@@ -31,8 +31,8 @@ export default function About() {
         transition={{ duration: 0.6 }}
         className="flex items-center gap-4 mb-16"
       >
-        <span className="font-mono text-[#00d9ff] text-sm tracking-widest">01.</span>
-        <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-white">About Me</h2>
+        <span className="font-mono text-neoncyan text-sm tracking-widest">01.</span>
+        <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-ink">About Me</h2>
         <div className="flex-1 cyber-divider" />
       </motion.div>
 
@@ -47,7 +47,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-[#94a3b8] leading-8 text-base"
+              className="text-muted leading-8 text-base"
             >
               {personalInfo.objective}
             </motion.p>
@@ -56,7 +56,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[#64748b] leading-8 text-base"
+              className="text-muted leading-8 text-base"
             >
               {personalInfo.objectivePart2}
             </motion.p>
@@ -70,14 +70,14 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <Target size={16} className="text-[#00ff87]" />
-              <span className="font-mono text-xs tracking-widest uppercase text-[#64748b]">Interests</span>
+              <Target size={16} className="text-neongreen" />
+              <span className="font-mono text-xs tracking-widest uppercase text-faint">Interests</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {personal.interests.map((interest) => (
                 <span
                   key={interest}
-                  className="px-3 py-1.5 rounded font-mono text-xs text-[#00ff87] border border-[#00ff87]/20 bg-[#00ff87]/5"
+                  className="px-3 py-1.5 rounded font-mono text-xs text-neongreen border border-neongreen/20 bg-neongreen/5"
                 >
                   {interest}
                 </span>
@@ -91,24 +91,24 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="glass-card p-5 rounded-lg overflow-x-auto"
+            className="terminal-card p-5 overflow-x-auto"
           >
-            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#1e293b]">
+            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-line">
               <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
               <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
               <div className="w-3 h-3 rounded-full bg-[#28c840]" />
-              <span className="ml-2 font-mono text-xs text-[#475569]">whoami.sh</span>
+              <span className="ml-2 font-mono text-xs text-faint">whoami.sh</span>
             </div>
             <div className="font-mono text-sm space-y-1.5">
-              <p><span className="text-[#00d9ff]">$</span> <span className="text-[#94a3b8]">echo $ROLE</span></p>
-              <p className="text-white pl-2">Security Engineer · Co-Founder · SecDev Lead</p>
-              <p className="mt-2"><span className="text-[#00d9ff]">$</span> <span className="text-[#94a3b8]">echo $EXPERTISE</span></p>
-              <p className="text-[#00ff87] pl-2">AppSec · Defensive Security · DevSecOps</p>
-              <p className="mt-2"><span className="text-[#00d9ff]">$</span> <span className="text-[#94a3b8]">echo $FOCUS</span></p>
-              <p className="text-[#00d9ff] pl-2">Secure SDLC · Threat Intelligence · Automation</p>
+              <p><span className="text-neoncyan">$</span> <span className="text-muted">echo $ROLE</span></p>
+              <p className="text-ink pl-2">SecDev Lead · Security Software Engineer</p>
+              <p className="mt-2"><span className="text-neoncyan">$</span> <span className="text-muted">echo $EXPERTISE</span></p>
+              <p className="text-neongreen pl-2">AppSec · Defensive Security · DevSecOps</p>
+              <p className="mt-2"><span className="text-neoncyan">$</span> <span className="text-muted">echo $FOCUS</span></p>
+              <p className="text-neoncyan pl-2">Security Products · Automation · Secure SDLC</p>
               <p className="mt-2 flex items-center gap-1">
-                <span className="text-[#00d9ff]">$</span>
-                <span className="cursor-blink text-[#00d9ff]">_</span>
+                <span className="text-neoncyan">$</span>
+                <span className="cursor-blink text-neoncyan">_</span>
               </p>
             </div>
           </motion.div>
@@ -127,8 +127,8 @@ export default function About() {
           >
             <div className="relative shrink-0">
               {/* Neon ring */}
-              <div className="absolute inset-0 rounded-full bg-[#00d9ff]/20 blur-md scale-110" />
-              <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-[#00d9ff]/50 shadow-neon-cyan">
+              <div className="absolute inset-0 rounded-full bg-neoncyan/20 blur-md scale-110" />
+              <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-neoncyan/50 shadow-neon-cyan">
                 <Image
                   src="/hero.png"
                   alt="Bayzid Himel"
@@ -138,15 +138,15 @@ export default function About() {
                   style={{ objectPosition: "50% 10%" }}
                 />
               </div>
-              {/* Online indicator */}
-              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#00ff87] border-2 border-[#030712] pulse-dot" />
+              {/* Status indicator */}
+              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-neongreen border-2 border-base pulse-dot" />
             </div>
             <div>
-              <p className="font-orbitron text-sm font-bold text-white">{personalInfo.name}</p>
-              <p className="font-mono text-xs text-[#00d9ff] mt-0.5">Co-Founder & SecDev Lead — Penough</p>
-              <p className="font-mono text-[11px] text-[#475569] mt-1 flex items-center gap-1.5">
-                <span className="w-1 h-1 rounded-full bg-[#fbbf24] inline-block" />
-                Not open to new roles
+              <p className="font-orbitron text-sm font-bold text-ink">{personalInfo.name}</p>
+              <p className="font-mono text-xs text-neoncyan mt-0.5">SecDev Lead — Penough Ltd.</p>
+              <p className="font-mono text-[11px] text-faint mt-1 flex items-center gap-1.5">
+                <span className="w-1 h-1 rounded-full bg-neongreen inline-block" />
+                Security Software Engineer
               </p>
             </div>
           </motion.div>
@@ -164,15 +164,15 @@ export default function About() {
             >
               <div
                 className={`mt-0.5 p-2 rounded ${item.color === "cyan"
-                  ? "bg-[#00d9ff]/10 text-[#00d9ff]"
-                  : "bg-[#00ff87]/10 text-[#00ff87]"
+                  ? "bg-neoncyan/10 text-neoncyan"
+                  : "bg-neongreen/10 text-neongreen"
                   }`}
               >
                 <item.icon size={16} />
               </div>
               <div className="min-w-0">
-                <p className="font-mono text-xs text-[#475569] uppercase tracking-wider mb-1">{item.label}</p>
-                <p className="text-sm text-[#e2e8f0] break-all">{item.value}</p>
+                <p className="font-mono text-xs text-faint uppercase tracking-wider mb-1">{item.label}</p>
+                <p className="text-sm text-ink break-words">{item.value}</p>
               </div>
             </motion.div>
           ))}
@@ -188,11 +188,11 @@ export default function About() {
             {[
               { value: "3+", label: "Years Exp." },
               { value: "6", label: "Certifications" },
-              { value: "10+", label: "Tools Mastered" },
+              { value: "4", label: "Products Built" },
             ].map(({ value, label }) => (
               <div key={label} className="glass-card p-4 text-center corner-bracket">
                 <p className="font-orbitron text-2xl font-bold cyber-gradient">{value}</p>
-                <p className="font-mono text-[10px] text-[#475569] uppercase tracking-wider mt-1">{label}</p>
+                <p className="font-mono text-[10px] text-faint uppercase tracking-wider mt-1">{label}</p>
               </div>
             ))}
           </motion.div>
