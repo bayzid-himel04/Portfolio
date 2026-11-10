@@ -23,8 +23,9 @@ const config: Config = {
         onaccent: "rgb(var(--on-accent) / <alpha-value>)",
       },
       fontFamily: {
-        orbitron: ["Orbitron", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        orbitron: ["var(--font-orbitron)", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       boxShadow: {
         "neon-cyan": "0 0 15px rgb(var(--cyan) / 0.4), 0 0 30px rgb(var(--cyan) / 0.15)",

@@ -1,159 +1,125 @@
 "use client";
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Send } from "lucide-react";
+
+import { useState } from "react";
+import {
+  ArrowUpRight,
+  Check,
+  Copy,
+  Github,
+  Linkedin,
+
+  MapPin,
+  Phone,
+} from "lucide-react";
 import { personalInfo } from "@/lib/data";
-
-const contactItems = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: personalInfo.email,
-    href: `mailto:${personalInfo.email}`,
-    color: "cyan",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: personalInfo.phone,
-    href: `tel:${personalInfo.phone}`,
-    color: "green",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: personalInfo.location,
-    href: null,
-    color: "cyan",
-  },
-];
-
-const socials = [
-  { icon: Github, label: "GitHub", href: personalInfo.github },
-  { icon: Linkedin, label: "LinkedIn", href: personalInfo.linkedin },
-];
+import Reveal from "./Reveal";
+import SectionHeader from "./SectionHeader";
 
 export default function Contact() {
+  const [copied, setCopied] = useState(false);
+  const tel = personalInfo.phone.replace(/\s/g, "");
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+
   return (
-    <section id="contact" className="py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-        className="flex items-center gap-4 mb-16"
-      >
-        <span className="font-mono text-neoncyan text-sm tracking-widest">07.</span>
-        <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-ink">Contact</h2>
-        <div className="flex-1 cyber-divider" />
-      </motion.div>
+    <section id="contact" className="section-shell pb-32 sm:pb-40">
+      <SectionHeader
+        index="06"
+        label="contact"
+        title="Let's build something harder to break."
+      />
 
-      <div className="grid lg:grid-cols-2 gap-12">
-        {/* Left: CTA text */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="space-y-6"
-        >
-          <h3 className="font-orbitron text-2xl sm:text-3xl font-bold">
-            <span className="text-ink">Let&apos;s Work </span>
-            <span className="cyber-gradient">Together</span>
-          </h3>
-          <p className="text-muted leading-8">
-            Whether you have a question, a project idea, or just want to connect — my inbox is
-            always open. I&apos;m happy to talk about cybersecurity products, application security,
-            DevSecOps, and security research.
-          </p>
+      <div className="border-t border-line pt-10">
+        <div>
+          <Reveal>
+            <p className="max-w-xl text-base leading-8 text-muted">
+              Whether you have a question, a project idea, or want to talk security products,
+              application security, DevSecOps, or research — reach out directly.
+            </p>
+          </Reveal>
 
-          {/* Contact info */}
-          <div className="space-y-4">
-            {contactItems.map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 + 0.2 }}
-                className="flex items-center gap-4"
+          <Reveal delay={0.06} className="mt-10">
+            <p className="hud-label">direct line</p>
+            <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-4">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="group inline-flex max-w-full items-start gap-3 text-ink transition-colors duration-200 hover:text-neoncyan"
               >
-                <div className={`p-2.5 rounded-lg ${item.color === "cyan" ? "bg-neoncyan/10 text-neoncyan" : "bg-neongreen/10 text-neongreen"}`}>
-                  <item.icon size={16} />
-                </div>
-                <div>
-                  <p className="font-mono text-[11px] text-faint uppercase tracking-wider">{item.label}</p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className={`text-sm hover:underline transition-colors duration-200 ${
-                        item.color === "cyan" ? "text-ink hover:text-neoncyan" : "text-ink hover:text-neongreen"
-                      }`}
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <p className="text-sm text-ink">{item.value}</p>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                <span className="break-all text-[clamp(1.25rem,3vw,2.25rem)] font-semibold leading-tight tracking-[-0.02em]">
+                  {personalInfo.email}
+                </span>
+                <ArrowUpRight
+                  size={18}
+                  className="mt-1 shrink-0 text-neoncyan transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
+              </a>
 
-          {/* Social links */}
-          <div className="flex gap-3 pt-2">
-            {socials.map(({ icon: Icon, label, href }) => (
-              <motion.a
-                key={label}
-                href={href}
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="inline-flex items-center gap-2 border border-line px-3 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-faint transition-colors duration-200 hover:border-neoncyan/50 hover:text-neoncyan"
+              >
+                {copied ? <Check size={11} /> : <Copy size={11} />}
+                {copied ? "copied" : "copy"}
+              </button>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="mt-9">
+            <div className="flex flex-col gap-4 border-t border-line/70 pt-6 font-mono text-xs uppercase tracking-[0.12em] text-muted sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-9">
+              <a
+                href={`tel:${tel}`}
+                className="flex items-center gap-2 transition-colors hover:text-neoncyan"
+              >
+                <Phone size={13} className="text-neoncyan" />
+                {personalInfo.phone}
+              </a>
+              <span className="flex items-center gap-2">
+                <MapPin size={13} className="text-neoncyan" />
+                {personalInfo.location}
+              </span>
+              <a
+                href="/Bayzid_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 px-4 py-2.5 glass-card text-sm font-mono text-muted hover:text-neoncyan hover:border-neoncyan/40 transition-all duration-300"
+                className="flex items-center gap-2 transition-colors hover:text-neoncyan"
               >
-                <Icon size={15} />
-                {label}
-                <ExternalLink size={11} className="opacity-50" />
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
+                resume.pdf
+                <ArrowUpRight size={12} />
+              </a>
+            </div>
+          </Reveal>
 
-        {/* Right: Email CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col justify-center"
-        >
-          <div className="glass-card p-8 sm:p-10 text-center relative overflow-hidden">
-            {/* Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-neoncyan/5 blur-3xl pointer-events-none" />
+          <Reveal delay={0.14} className="mt-9">
+            <div className="flex flex-wrap gap-2">
+              {[
+                { href: personalInfo.github, icon: Github, label: "GitHub" },
+                { href: personalInfo.linkedin, icon: Linkedin, label: "LinkedIn" },
+              ].map(({ href, icon: Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-line/70 px-3.5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted transition-colors duration-200 hover:border-neoncyan/50 hover:text-neoncyan"
+                >
+                  <Icon size={13} />
+                  {label}
+                  <ArrowUpRight size={10} className="text-faint" />
+                </a>
+              ))}
+            </div>
+          </Reveal>
+        </div>
 
-            <motion.div
-              animate={{ rotate: [0, 5, -5, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="inline-flex p-5 rounded-full bg-neoncyan/10 border border-neoncyan/20 mb-6"
-            >
-              <Send size={30} className="text-neoncyan" />
-            </motion.div>
-
-            <h4 className="font-orbitron text-xl font-bold text-ink mb-3">Say Hello</h4>
-            <p className="text-muted text-sm mb-7 font-mono">
-              Reach out via email — I respond within 24 hours.
-            </p>
-
-            <motion.a
-              href={`mailto:${personalInfo.email}`}
-              whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(0, 217, 255, 0.35)" }}
-              whileTap={{ scale: 0.97 }}
-              className="block w-full py-4 font-mono font-semibold text-sm tracking-wider uppercase text-onaccent bg-neoncyan rounded hover:bg-neongreen transition-all duration-300"
-            >
-              {personalInfo.email}
-            </motion.a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

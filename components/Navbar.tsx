@@ -1,160 +1,192 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Menu, X } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
 
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Products", href: "#products" },
-  { label: "Skills", href: "#skills" },
-  { label: "Certifications", href: "#certifications" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
-];
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
+import { navLinks, personalInfo } from "@/lib/data";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 30);
+      if (window.scrollY < window.innerHeight * 0.55) setActive("");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    const ids = navLinks.map((l) => l.href.replace("#", ""));
+    const ids = navLinks.map((link) => link.href.replace("#", ""));
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActiveSection(e.target.id);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
         });
       },
-      { rootMargin: "-40% 0px -55% 0px" }
+      { rootMargin: "-42% 0px -52% 0px" }
     );
+
     ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
     });
+
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.documentElement.style.overflow = previous;
+    };
+  }, [open]);
+
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-base/90 backdrop-blur-xl border-b border-neoncyan/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <motion.a
-          href="#"
-          className="flex items-center gap-2 group"
-          whileHover={{ scale: 1.02 }}
-        >
-          <div className="relative">
-            <Shield
-              size={22}
-              className="text-neoncyan group-hover:drop-shadow-[0_0_8px_rgba(0,217,255,0.8)] transition-all duration-300"
-            />
-            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-neongreen pulse-dot" />
-          </div>
-          <span className="font-orbitron text-sm font-bold tracking-widest text-ink">
-            BH<span className="text-neoncyan">.</span>
-          </span>
-        </motion.a>
-
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.href.replace("#", "");
-            return (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`relative px-3 py-2 text-xs font-mono tracking-wider uppercase transition-colors duration-200 ${
-                  isActive ? "text-neoncyan" : "text-muted hover:text-ink"
-                }`}
-              >
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-indicator"
-                    className="absolute inset-0 rounded bg-neoncyan/8 border border-neoncyan/20"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-                  />
-                )}
-                {link.label}
-              </a>
-            );
-          })}
-          <ThemeToggle className="ml-3" />
-          <a
-            href="/Bayzid_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-2 px-4 py-2 text-xs font-mono tracking-wider uppercase text-onaccent bg-neoncyan rounded hover:bg-neongreen hover:shadow-neon-green transition-all duration-300 font-semibold"
-          >
-            Resume
+    <>
+      <motion.header
+        initial={{ y: -24, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed left-0 right-0 top-0 z-50 transition-colors duration-300 ${
+          scrolled || open
+            ? "border-b border-line/70 bg-base/80 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between px-5 sm:px-8">
+          <a href="#" className="group flex items-center gap-3" aria-label="Back to top">
+            <span className="relative flex h-8 w-8 items-center justify-center border border-line/80">
+              <span className="font-orbitron text-[11px] font-bold tracking-[0.12em] text-ink">
+                BH
+              </span>
+              <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-neongreen pulse-dot" />
+            </span>
+            <span className="hidden font-mono text-[11px] uppercase leading-relaxed tracking-[0.14em] text-faint sm:block">
+              security
+              <br />
+              systems
+            </span>
           </a>
-        </nav>
 
-        {/* Mobile controls */}
-        <div className="flex md:hidden items-center gap-2">
-          <ThemeToggle />
-          <button
-            className="p-2 text-muted hover:text-neoncyan transition-colors"
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-base/95 backdrop-blur-xl border-t border-neoncyan/10 overflow-hidden"
-          >
-            <div className="px-4 py-4 flex flex-col gap-2">
-              {navLinks.map((link, i) => (
-                <motion.a
+          <nav className="hidden items-center gap-1 lg:flex">
+            {navLinks.map((link) => {
+              const id = link.href.replace("#", "");
+              const isActive = active === id;
+              return (
+                <a
                   key={link.href}
                   href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => setMenuOpen(false)}
-                  className="py-3 px-4 font-mono text-sm tracking-wider uppercase text-muted hover:text-neoncyan hover:bg-neoncyan/5 rounded transition-all duration-200"
+                  className={`group relative px-3 py-2 font-mono text-xs uppercase tracking-[0.14em] transition-colors duration-200 ${
+                    isActive ? "text-neoncyan" : "text-muted hover:text-ink"
+                  }`}
                 >
+                  <span className="mr-1.5 text-[11px] text-faint">{link.code}</span>
                   {link.label}
-                </motion.a>
-              ))}
-              <a
-                href="/Bayzid_CV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMenuOpen(false)}
-                className="mt-2 py-3 px-4 text-center font-mono text-sm tracking-wider uppercase text-onaccent bg-neoncyan rounded font-semibold"
-              >
-                Download Resume
-              </a>
+                  <span
+                    className={`absolute bottom-0 left-3 right-3 h-px bg-neoncyan transition-transform duration-300 ${
+                      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  />
+                </a>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <a
+              href="/Bayzid_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden items-center gap-1.5 border border-line/80 px-3.5 py-2 font-mono text-xs uppercase tracking-[0.14em] text-muted transition-colors duration-200 hover:border-neoncyan/50 hover:text-neoncyan sm:inline-flex"
+            >
+              Resume
+              <ArrowUpRight size={12} />
+            </a>
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setOpen((value) => !value)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              className="inline-flex h-9 w-9 items-center justify-center border border-line/70 text-muted transition-colors hover:border-neoncyan/50 hover:text-neoncyan lg:hidden"
+            >
+              {open ? <X size={16} /> : <Menu size={16} />}
+            </button>
+          </div>
+        </div>
+      </motion.header>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-line/60 bg-base/95 backdrop-blur-2xl lg:hidden"
+            data-lenis-prevent
+          >
+            <div className="flex min-h-full flex-col px-5 py-8">
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
+                navigation // secure channel
+              </p>
+              <nav className="mt-6 flex flex-1 flex-col">
+                {navLinks.map((link, index) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.04 + index * 0.04 }}
+                    className="flex items-center justify-between border-b border-line/50 py-4"
+                  >
+                    <span className="flex items-baseline gap-4">
+                      <span className="font-mono text-xs text-neoncyan">
+                        {link.code}
+                      </span>
+                      <span className="font-orbitron text-2xl font-semibold text-ink">
+                        {link.label}
+                      </span>
+                    </span>
+                    <span className="font-mono text-xs text-faint">↗</span>
+                  </motion.a>
+                ))}
+              </nav>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <a
+                  href="/Bayzid_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-neoncyan px-4 py-3 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-onaccent"
+                >
+                  Download CV
+                  <ArrowUpRight size={13} />
+                </a>
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="border border-line px-4 py-3 font-mono text-xs uppercase tracking-[0.14em] text-muted"
+                >
+                  Email
+                </a>
+              </div>
+
+              <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
+                {personalInfo.location} {"//"} session active
+              </p>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }

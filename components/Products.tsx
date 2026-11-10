@@ -1,113 +1,104 @@
 "use client";
-import { motion } from "framer-motion";
-import { Fish, Bug, Radar, MessageCircle, ExternalLink, ChevronRight, Globe } from "lucide-react";
+
+import { ArrowUpRight } from "lucide-react";
 import { products } from "@/lib/data";
-
-const icons = [Fish, Bug, Radar, MessageCircle];
-
-const themeMap = {
-  cyan: {
-    text: "text-neoncyan",
-    icon: "bg-neoncyan/10 border-neoncyan/20",
-    bullet: "text-neoncyan",
-    hover: "hover:border-neoncyan/50",
-    line: "from-transparent via-neoncyan to-transparent",
-  },
-  green: {
-    text: "text-neongreen",
-    icon: "bg-neongreen/10 border-neongreen/20",
-    bullet: "text-neongreen",
-    hover: "hover:border-neongreen/50",
-    line: "from-transparent via-neongreen to-transparent",
-  },
-  magenta: {
-    text: "text-neonmagenta",
-    icon: "bg-neonmagenta/10 border-neonmagenta/20",
-    bullet: "text-neonmagenta",
-    hover: "hover:border-neonmagenta/50",
-    line: "from-transparent via-neonmagenta to-transparent",
-  },
-};
+import Reveal from "./Reveal";
+import SectionHeader from "./SectionHeader";
 
 export default function Products() {
   return (
-    <section id="products" className="py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-        className="flex items-center gap-4 mb-16"
-      >
-        <span className="font-mono text-neoncyan text-sm tracking-widest">03.</span>
-        <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-ink">Selected Products</h2>
-        <div className="flex-1 cyber-divider" />
-      </motion.div>
+    <section id="products" className="section-shell">
+      <SectionHeader
+        index="02"
+        label="products"
+        title="Selected products."
+        description="Platforms I've co-developed and led at Penough — security products for phishing simulation, continuous penetration testing, and internet asset discovery, plus a messaging automation platform."
+      />
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {products.map((product, i) => {
-          const Icon = icons[i % icons.length];
-          const theme = themeMap[product.color];
-          return (
-            <motion.article
-              key={product.name}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: i * 0.12, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-              whileHover={{ y: -6 }}
-              className={`glass-card p-7 relative overflow-hidden group flex flex-col transition-all duration-300 ${theme.hover}`}
-            >
-              {/* Watermark index */}
-              <span className={`absolute -top-3 -right-2 font-orbitron text-6xl font-black opacity-[0.05] select-none ${theme.text}`}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
+      <div className="grid border-l border-t border-line md:grid-cols-2">
+        {products.map((product, index) => (
+          <Reveal
+            key={product.name}
+            delay={(index % 2) * 0.07}
+            className="border-b border-r border-line"
+          >
+            <article className="module group relative flex h-full flex-col overflow-hidden p-6 sm:p-8">
+              {product.image && (
+                <a
+                  href={product.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${product.name}`}
+                  className="mb-7 block overflow-hidden border border-line bg-panel transition-colors duration-300 group-hover:border-neoncyan/40"
+                >
+                  <div className="flex items-center gap-1.5 border-b border-line px-3 py-2">
+                    <span className="h-2 w-2 rounded-full bg-line" />
+                    <span className="h-2 w-2 rounded-full bg-line" />
+                    <span className="h-2 w-2 rounded-full bg-line" />
+                    <span className="ml-3 truncate font-mono text-[11px] text-faint">
+                      {product.domain}
+                    </span>
+                  </div>
+                  <div className="aspect-[16/10] overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={product.image}
+                      alt={`${product.name} website homepage`}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    />
+                  </div>
+                </a>
+              )}
 
-              {/* Header */}
-              <div className="flex items-start gap-4 mb-5">
-                <div className={`p-3 rounded-lg border shrink-0 ${theme.icon}`}>
-                  <Icon size={22} className={theme.text} />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-orbitron text-lg font-bold text-ink">{product.name}</h3>
-                  <p className={`font-mono text-[11px] leading-relaxed uppercase tracking-wider mt-1 ${theme.text}`}>
-                    {product.tagline}
+              <div className="flex items-start justify-between gap-5">
+                <div>
+                  <p className="font-mono text-xs text-faint">
+                    {String(index + 1).padStart(2, "0")}
                   </p>
+                  <h3 className="mt-2 font-orbitron text-2xl font-bold tracking-[-0.01em] text-ink">
+                    {product.name}
+                  </h3>
                 </div>
+                <a
+                  href={product.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${product.name} website`}
+                  className="flex h-9 w-9 shrink-0 items-center justify-center border border-line/70 text-muted transition-colors duration-200 hover:border-neoncyan/50 hover:text-neoncyan"
+                >
+                  <ArrowUpRight size={15} />
+                </a>
               </div>
 
-              {/* Description */}
-              <p className="text-muted text-sm leading-relaxed mb-5">{product.description}</p>
+              <p className="mt-2 text-sm font-medium text-neoncyan">{product.tagline}</p>
 
-              {/* Bullets */}
-              <ul className="space-y-2 mb-6">
+              <p className="mt-5 text-[15px] leading-7 text-muted">{product.description}</p>
+
+              <ul className="mt-5 space-y-2">
                 {product.points.map((point) => (
-                  <li key={point} className="flex items-start gap-2.5 text-muted text-[13px] leading-relaxed">
-                    <ChevronRight size={13} className={`mt-0.5 shrink-0 ${theme.bullet}`} />
+                  <li key={point} className="flex gap-2.5 text-sm leading-6 text-muted">
+                    <span className="mt-[2px] shrink-0 text-neoncyan/60">—</span>
                     {point}
                   </li>
                 ))}
               </ul>
 
-              {/* Website link */}
               <a
                 href={product.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-auto inline-flex items-center gap-2 font-mono text-xs tracking-wider transition-colors duration-200 ${theme.text} hover:underline`}
+                className="mt-auto inline-flex items-center gap-2 pt-7 font-mono text-xs text-neoncyan transition-colors duration-200 hover:underline"
               >
-                <Globe size={13} />
                 {product.domain}
-                <ExternalLink size={11} className="opacity-60" />
+                <ArrowUpRight size={12} className="opacity-60" />
               </a>
 
-              {/* Bottom accent line */}
-              <div
-                className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${theme.line}`}
-              />
-            </motion.article>
-          );
-        })}
+              <span className="module-scan" aria-hidden="true" />
+            </article>
+          </Reveal>
+        ))}
       </div>
     </section>
   );

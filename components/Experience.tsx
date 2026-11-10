@@ -1,118 +1,86 @@
 "use client";
-import { motion } from "framer-motion";
-import { Briefcase, ChevronRight, MapPin, Calendar } from "lucide-react";
+
 import { workExperience } from "@/lib/data";
+import Reveal from "./Reveal";
+import SectionHeader from "./SectionHeader";
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Section header */}
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-        className="flex items-center gap-4 mb-16"
-      >
-        <span className="font-mono text-neoncyan text-sm tracking-widest">02.</span>
-        <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-ink">Experience</h2>
-        <div className="flex-1 cyber-divider" />
-      </motion.div>
+    <section id="experience" className="section-shell">
+      <SectionHeader
+        index="01"
+        label="experience"
+        title="Where I've worked."
+        description="4 years across security operations and security product engineering — from SOC monitoring to leading development of security platforms."
+      />
 
-      <div className="relative">
-        {/* Vertical timeline line */}
-        <div className="hidden md:block absolute left-[28px] top-0 bottom-0 w-px bg-line">
-          <motion.div
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            style={{ originY: 0 }}
-            className="w-full h-full bg-gradient-to-b from-neoncyan via-neongreen to-neoncyan/20"
-          />
-        </div>
-
-        <div className="space-y-10">
-          {workExperience.map((job, i) => (
-            <motion.div
-              key={job.company}
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="relative md:pl-20"
-            >
-              {/* Timeline dot */}
-              <div className="hidden md:flex absolute left-0 top-6 w-[57px] justify-center">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 + 0.3, type: "spring", stiffness: 300 }}
-                  className={`w-4 h-4 rounded-full border-2 z-10 ${
-                    job.current
-                      ? "border-neoncyan bg-neoncyan shadow-neon-cyan pulse-dot"
-                      : "border-neongreen bg-neongreen/20"
-                  }`}
-                />
+      <div className="border-t border-line">
+        {workExperience.map((job, index) => (
+          <Reveal key={job.company}>
+            <article className="grid gap-6 border-b border-line py-9 md:grid-cols-[190px_1fr] md:gap-10">
+              <div className="font-mono text-[11px] uppercase leading-6 tracking-[0.14em] text-faint">
+                <p className="text-neoncyan">{job.period}</p>
+                <p className="mt-2">{job.location}</p>
+                <p className="mt-2 text-faint/70">
+                  log // {String(index + 1).padStart(2, "0")}
+                </p>
               </div>
 
-              {/* Job card */}
-              <motion.div
-                whileHover={{ x: 4, borderColor: "rgb(var(--cyan) / 0.35)" }}
-                className="glass-card p-6 sm:p-8 transition-all duration-300"
-              >
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <Briefcase size={15} className="text-neoncyan" />
-                      <h3 className="font-orbitron text-lg font-bold text-ink">{job.role}</h3>
-                      {job.current && (
-                        <span className="px-2 py-0.5 rounded font-mono text-[10px] text-neongreen border border-neongreen/30 bg-neongreen/5 uppercase tracking-wider">
-                          Current
-                        </span>
-                      )}
-                    </div>
-                    <p className="font-semibold text-neoncyan text-base">{job.company}</p>
-                  </div>
-                  <div className="flex flex-col gap-1 text-right shrink-0">
-                    <div className="flex items-center justify-end gap-1.5 font-mono text-xs text-faint">
-                      <Calendar size={12} />
-                      {job.period}
-                    </div>
-                    <div className="flex items-center justify-end gap-1.5 font-mono text-xs text-faint">
-                      <MapPin size={12} />
-                      {job.location}
-                    </div>
-                  </div>
-                </div>
+              <div className="relative md:border-l md:border-line/60 md:pl-9">
+                <span
+                  className={`absolute -left-[3.5px] top-2 hidden h-1.5 w-1.5 rounded-full md:block ${
+                    job.current
+                      ? "bg-neoncyan shadow-neon-cyan pulse-dot"
+                      : "bg-line"
+                  }`}
+                />
 
-                {/* Responsibilities */}
-                <ul className="space-y-2.5">
-                  {job.responsibilities.map((r, j) => (
-                    <motion.li
-                      key={j}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 + j * 0.07 + 0.4 }}
-                      className="flex items-start gap-3 text-muted text-sm leading-relaxed"
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <h3 className="font-orbitron text-lg font-semibold text-ink sm:text-xl">
+                    {job.role}
+                  </h3>
+                  {job.current && (
+                    <span className="border border-neongreen/30 px-2 py-0.5 font-mono text-[11px] uppercase tracking-[0.14em] text-neongreen">
+                      active
+                    </span>
+                  )}
+                </div>
+                <p className="mt-1 font-mono text-xs uppercase tracking-[0.14em] text-neoncyan">
+                  {job.company}
+                </p>
+
+                {job.products && job.products.length > 0 && (
+                  <div className="mt-5 flex flex-wrap items-center gap-2">
+                    <span className="mr-1 text-sm text-faint">Products led:</span>
+                    {job.products.map((p) => (
+                      <a
+                        key={p.name}
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border border-neoncyan/40 bg-neoncyan/5 px-2.5 py-1 font-mono text-xs text-neoncyan transition-colors hover:bg-neoncyan/15"
+                      >
+                        {p.name} ↗
+                      </a>
+                    ))}
+                  </div>
+                )}
+
+                <ul className="mt-5 grid max-w-3xl gap-y-2.5">
+                  {job.responsibilities.map((responsibility) => (
+                    <li
+                      key={responsibility}
+                      className="flex gap-2.5 text-[15px] leading-7 text-muted"
                     >
-                      <ChevronRight
-                        size={14}
-                        className={`mt-0.5 shrink-0 ${
-                          job.current ? "text-neoncyan" : "text-neongreen"
-                        }`}
-                      />
-                      {r}
-                    </motion.li>
+                      <span className="mt-[2px] shrink-0 text-neoncyan/55">—</span>
+                      {responsibility}
+                    </li>
                   ))}
                 </ul>
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
+              </div>
+            </article>
+          </Reveal>
+        ))}
       </div>
     </section>
   );

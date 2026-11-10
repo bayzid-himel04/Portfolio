@@ -1,5 +1,21 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono, Orbitron } from "next/font/google";
+import AppShell from "@/components/AppShell";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
+  display: "swap",
+});
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  weight: ["600", "700", "900"],
+  variable: "--font-orbitron",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Bayzid Himel | SecDev Lead & Security Software Engineer",
@@ -16,17 +32,37 @@ export const metadata: Metadata = {
     "Bangladesh",
     "Bayzid Himel",
   ],
+  openGraph: {
+    title: "Bayzid Himel | SecDev Lead & Security Software Engineer",
+    description:
+      "SecDev Lead building security products: phishing simulation, continuous penetration testing, and internet asset discovery.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Bayzid Himel | SecDev Lead & Security Software Engineer",
+  },
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="light"){document.documentElement.classList.add("light");}}catch(e){}})();`;
+export const viewport: Viewport = {
+  themeColor: "#050607",
+  width: "device-width",
+  initialScale: 1,
+};
+
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="light"){document.documentElement.classList.add("light");document.documentElement.style.colorScheme="light";}}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="bg-base text-ink overflow-x-hidden">{children}</body>
+      <body
+        className={`${inter.variable} ${mono.variable} ${orbitron.variable} bg-base text-ink`}
+      >
+        <AppShell>{children}</AppShell>
+      </body>
     </html>
   );
 }

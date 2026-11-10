@@ -1,3 +1,12 @@
+export const navLinks = [
+  { label: "Experience", href: "#experience", code: "01" },
+  { label: "Products", href: "#products", code: "02" },
+  { label: "About", href: "#about", code: "03" },
+  { label: "Skills", href: "#skills", code: "04" },
+  { label: "Certifications", href: "#certifications", code: "05" },
+  { label: "Contact", href: "#contact", code: "06" },
+];
+
 export const personalInfo = {
   name: "Bayzid Himel",
   title: "SecDev Lead | Security Software Engineer",
@@ -19,6 +28,11 @@ export const workExperience = [
     role: "SecDev Lead",
     period: "November 2023 – Present",
     current: true,
+    products: [
+      { name: "PhishTop", url: "https://phishtop.com" },
+      { name: "BugValluk", url: "https://bugvalluk.com" },
+      { name: "Surveiller.io", url: "https://surveiller.io" },
+    ],
     responsibilities: [
       "Lead the development of cybersecurity products, translating security requirements into practical software features and workflows.",
       "Design and develop security-focused web applications, backend services, REST APIs, authentication mechanisms, and vulnerability management workflows.",
@@ -35,6 +49,7 @@ export const workExperience = [
     role: "Junior Cyber Security Engineer (SOC)",
     period: "March 2023 – October 2023",
     current: false,
+    products: [] as { name: string; url: string }[],
     responsibilities: [
       "Monitored SIEM alerts and investigated potential security incidents.",
       "Performed log analysis, threat investigation, and incident response activities to identify suspicious behavior.",
@@ -51,7 +66,7 @@ export const products = [
     tagline: "Security Awareness & Phishing Simulation Platform",
     website: "https://phishtop.com",
     domain: "phishtop.com",
-    color: "cyan" as const,
+    image: "/products/phishtop.png",
     description:
       "A security awareness and phishing simulation platform designed to help organizations assess user awareness and strengthen their human security defenses.",
     points: [
@@ -65,7 +80,7 @@ export const products = [
     tagline: "Continuous Penetration Testing & PenOps Platform",
     website: "https://bugvalluk.com",
     domain: "bugvalluk.com",
-    color: "green" as const,
+    image: "/products/bugvalluk.png",
     description:
       "A continuous penetration testing platform designed to streamline security assessments and vulnerability lifecycle management.",
     points: [
@@ -80,7 +95,7 @@ export const products = [
     tagline: "Security Search & Internet Asset Discovery",
     website: "https://surveiller.io",
     domain: "surveiller.io",
-    color: "magenta" as const,
+    image: "/products/surveiller.png",
     description:
       "A security-focused search platform that helps users explore internet-facing services and discover security-relevant information about exposed assets.",
     points: [
@@ -94,7 +109,7 @@ export const products = [
     tagline: "WhatsApp Automation & Messaging Platform",
     website: "https://www.waapimotion.com",
     domain: "waapimotion.com",
-    color: "green" as const,
+    image: "/products/waapimotion.png",
     description:
       "A WhatsApp automation and marketing platform for high-volume conversational messaging, built on the official Meta WhatsApp Cloud API.",
     points: [
@@ -110,7 +125,6 @@ export const education = {
   degree: "Bachelor of Science in Computer Science & Engineering",
   period: "2018 – 2024",
   location: "Dhaka, Bangladesh",
-  cgpa: "3.03",
 };
 
 export const certifications = [
@@ -119,95 +133,63 @@ export const certifications = [
     issuer: "Mastermind Assurance",
     date: "May 2025",
     badge: "ISO",
-    color: "cyan",
   },
   {
     name: "CASA – Certified API Security Analyst",
     issuer: "APISEC University",
     date: "April 2025",
     badge: "CASA",
-    color: "green",
   },
   {
     name: "ACP – APISEC Certified Practitioner",
     issuer: "APISEC University",
     date: "April 2025",
     badge: "ACP",
-    color: "green",
   },
   {
     name: "CAP – Certified AppSec Practitioner",
     issuer: "The SecOps Group",
     date: "September 2024",
     badge: "CAP",
-    color: "magenta",
   },
   {
     name: "C3SA – Certified Cyber Security Analyst",
     issuer: "CyberWarFare Labs",
     date: "July 2024",
     badge: "C3SA",
-    color: "cyan",
   },
   {
     name: "CNSP – Certified Network Security Practitioner",
     issuer: "The SecOps Group",
     date: "June 2024",
     badge: "CNSP",
-    color: "magenta",
   },
 ];
 
 export const skills = [
   {
     category: "Application Security",
-    color: "cyan" as const,
     items: ["Secure Coding", "Secure Code Review", "Threat Modeling", "Authentication & Authorization", "API Security", "Vulnerability Assessment"],
   },
   {
     category: "Defensive Security",
-    color: "green" as const,
     items: ["SIEM", "Security Monitoring", "Threat Detection", "Incident Response", "Log Analysis", "Vulnerability Management", "Digital Forensics"],
   },
   {
-    category: "Security Platforms",
-    color: "magenta" as const,
-    items: ["Wazuh", "TheHive", "Cortex", "Shuffle", "OpenCTI"],
+    category: "Security Platforms & Threat Intel",
+    items: ["Wazuh", "TheHive", "Cortex", "Shuffle", "OpenCTI", "MITRE ATT&CK", "YARA Rules", "IOC Analysis"],
   },
   {
-    category: "Threat Intelligence",
-    color: "cyan" as const,
-    items: ["MITRE ATT&CK", "YARA Rules", "IOC Analysis"],
+    category: "Languages & Frontend",
+    items: ["JavaScript", "TypeScript", "React.js", "Next.js", "HTML5", "CSS3", "Tailwind CSS"],
   },
   {
-    category: "Programming Languages",
-    color: "green" as const,
-    items: ["JavaScript", "TypeScript"],
+    category: "Backend, APIs & Data",
+    items: ["Node.js", "Express.js", "REST APIs", "JWT", "OAuth2", "PostgreSQL", "MongoDB", "Elasticsearch"],
   },
   {
-    category: "Frontend Development",
-    color: "magenta" as const,
-    items: ["React.js", "Next.js", "HTML5", "CSS3", "Tailwind CSS"],
-  },
-  {
-    category: "Backend Development",
-    color: "cyan" as const,
-    items: ["Node.js", "Express.js", "REST APIs", "JWT", "OAuth2"],
-  },
-  {
-    category: "Databases & Search",
-    color: "green" as const,
-    items: ["PostgreSQL", "MongoDB", "Elasticsearch"],
-  },
-  {
-    category: "DevSecOps & Infrastructure",
-    color: "magenta" as const,
-    items: ["Git", "GitHub", "Docker", "Linux", "Secure SDLC", "CI/CD Fundamentals"],
-  },
-  {
-    category: "Testing & API Tools",
-    color: "cyan" as const,
-    items: ["Postman", "Apache JMeter"],
+    category: "DevSecOps & Tooling",
+    items: ["Git", "GitHub", "Docker", "Linux", "Secure SDLC", "CI/CD Fundamentals", "Postman", "Apache JMeter"],
   },
 ];
 
